@@ -35,11 +35,12 @@ class Login extends React.Component {
         if(resp.status === 201){
           this.setState({ loginFormOpen: false });
         }else{
-          alert('Email Already Exists');
+          alert('Invalid Credentials');
         }
+        this.setState({email : '', password : ''})
       }).catch((err) => console.log(err));
   };
-  
+
   render() {
     return (
       <>
