@@ -7,25 +7,25 @@ const bcrypt = require('bcryptjs');
 
 router.post('/', (req, res) => {
     if (!req.body) {
-        res.status(400).send({error: "Email and Password not present in request"});
+        res.status(400).send({error: "Email Id and Password not present", status : 400});
         return;
     }
 
     const { email, password } = req.body;
 
     if (!email) {
-        res.status(400).send({error: "Email not present in request"});
+        res.status(400).send({error: "Email Id not present", status : 400});
         return;
     }
 
     if (!password) {
-        res.status(400).send({error: "Password not present in request"});
+        res.status(400).send({error: "Password not present", status : 400});
         return;
     }
 
     UserCredential.findOne({ email }).then(user => {
         if (user) {
-            res.status(400).send({error: "User already signed up"});
+            res.status(400).send({error: "Email Id already present", status : 400});
             return;
         }
 
@@ -36,11 +36,11 @@ router.post('/', (req, res) => {
         userCredential.save().then(() => {
             const user = new User({ _id: userCredential.id, email });
             user.save().then(() => {
-                res.status(201).send({ id: userCredential.id });
+                res.status(201).send({ id: userCredential.id , status : 201});
             });
         });
     }).catch(() => {
-        res.status(500).send({ error: "Internal Server Error" });
+        res.status(500).send({ error: "Internal Server Error" , status : 500});
     });
 });
 
@@ -48,7 +48,7 @@ router.get('/me', auth.authenticate, (req, res) => {
     User.findOne({ _id: req.session.userId }).then(user => {
         res.send(user);
     }).catch(() => {
-        res.status(500).send({ error: "Internal Server Error" });
+        res.status(500).send({ error: "Internal Server Error" , status : 500});
     });
 });
 
@@ -56,13 +56,13 @@ router.get('/:userId', (req, res) => {
     User.findOne({ _id: req.params.userId }).then(user => {
         res.send(user);
     }).catch(() => {
-        res.status(500).send({ error: "Internal Server Error" });
+        res.status(500).send({ error: "Internal Server Error" , status : 500});
     });
 });
 
 router.put('/me', auth.authenticate, (req, res) => {
     if (!req.session.userId) {
-        res.send(401).send({ error: "Not logged in"});
+        res.send(401).send({ error: "Not logged in", status : 401});
     }
 
     const { firstName, lastName } = req.body;
@@ -74,7 +74,7 @@ router.put('/me', auth.authenticate, (req, res) => {
     User.updateOne({ _id: req.session.userId }, updateQuery).then(() => {
         res.status(204).send();
     }).catch(() => {
-        res.status(500).send({ error: "Internal Server Error" });
+        res.status(500).send({ error: "Internal Server Error" , status : 500});
     });
 });
 
