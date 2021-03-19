@@ -1,5 +1,6 @@
 import React from 'react';
 import Modal from 'react-modal';
+import { FaStar } from 'react-icons/fa';
 import Star from './Star';
 
 class Rate extends React.Component {
@@ -29,6 +30,7 @@ class Rate extends React.Component {
                          <div className="ratingClosebuttonContainer">
                             <button className="ratingClosebutton" onClick={this.hideLogin}>X</button>
                         </div>
+                        <FaStar className="bigStar" size={70}/>
                         <label className="rateThis">RATE THIS</label>
                         <ul className="rateBtnContainer">
                             <li><Star/></li>

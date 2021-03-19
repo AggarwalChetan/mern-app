@@ -40,13 +40,14 @@ class Login extends React.Component {
     });
 
     fetch(req)
+    .then(resp => resp.json())
       .then((resp) =>{ 
-        if(resp.status === 201){
+        if(resp.status === 201 || resp.status === 200){
           this.setState({ loginFormOpen: false });
+          this.setState({email : '', password : ''})
         }else{
-          alert('Invalid Credentials');
+          // alert(resp.error);
         }
-        this.setState({email : '', password : ''})
       }).catch((err) => console.log(err));
   };
 

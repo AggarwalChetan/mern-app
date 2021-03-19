@@ -446,3 +446,9 @@ header {
 .spaceBetweenText{
   word-spacing: 30px;
 }
+
+.bigStar {
+  color:yellow;
+  display: flex;
+  margin-left: 38.5%; 
+}
