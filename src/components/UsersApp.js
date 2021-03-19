@@ -1,5 +1,5 @@
 import React from 'react';
-import Movie from './Movies';
+import UsersMovies from './UsersMovies';
 
 class UsersApp extends React.Component {
   constructor(props) {
@@ -59,7 +59,7 @@ class UsersApp extends React.Component {
         </header>
 
         <div className="movie-container">
-          {this.state.movies.length > 0 && this.state.movies.map(movie => <Movie {...movie} />)}
+          {this.state.movies.length > 0 && this.state.movies.map(movie => <UsersMovies {...movie} />)}
         </div>
       </>
     );

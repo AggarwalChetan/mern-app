@@ -1,7 +1,7 @@
 import {useHistory} from 'react-router-dom';
-import Login from './Login';
+import MoviesRate from './MoviesRate';
 
-function MoviesOverview(props) {
+function UsersMoviesOverview(props) {
 
     let history = useHistory();
 
@@ -16,8 +16,7 @@ function MoviesOverview(props) {
             <p>{props.overview}</p>            
             <h5>Total Vote Count - {props.vote_count}</h5>
             <div className="buttonContainer">
-            {/* <MoviesRate/> */}
-                <Login value="voteButton" action="Rate"/>
+                <MoviesRate/>
                 <button className="exploreMovie" onClick={handleExplore}>Explore</button>
             </div>
             
@@ -25,4 +24,4 @@ function MoviesOverview(props) {
     );
 }
 
-export default MoviesOverview;
+export default UsersMoviesOverview;
