@@ -17,11 +17,11 @@ class Rate extends React.Component {
     }
 
     hideLogin = () => {
-        this.setState({ loginFormOpen: false })
+        this.setState({ loginFormOpen: false });
     }
 
     handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value })
+        this.setState({ [event.target.name]: event.target.value });
     }
 
     removeRating = () => {
