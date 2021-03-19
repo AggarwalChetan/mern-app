@@ -16,7 +16,7 @@ function UsersMoviesOverview(props) {
             <p>{props.overview}</p>            
             <h5>Total Vote Count - {props.vote_count}</h5>
             <div className="buttonContainer">
-                <MoviesRate/>
+                <MoviesRate id = {props.id}/>
                 <button className="exploreMovie" onClick={handleExplore}>Explore</button>
             </div>
             

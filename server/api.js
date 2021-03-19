@@ -4,6 +4,7 @@ const { default: axios } = require('axios');
 
 const users = require('./routes/users');
 const sessions = require('./routes/sessions');
+const reviews = require('./routes/reviews');
 
 const router = express.Router();
 
@@ -53,5 +54,7 @@ router.post('/searchById', getSearchMoviesInfo);
 router.use('/users', users);
 
 router.use('/sessions', sessions);
+
+router.use('/reviews', reviews);
 
 module.exports = router;

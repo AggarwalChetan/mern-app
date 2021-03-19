@@ -5,7 +5,7 @@ import { FaStar } from 'react-icons/fa';
 class Rate extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { loginFormOpen: false, review: '', rating : 0, hover : 0};
+        this.state = { loginFormOpen: false, review: '', rating : 0, hover : 0, id : ''};
     };
 
     handleSetRating = (event) => {
@@ -17,6 +17,21 @@ class Rate extends React.Component {
     }
 
     hideLogin = () => {
+        this.setState({ loginFormOpen: false });
+    }
+
+    submitReviews = (props) => {
+        const request = new Request("/api/reviews", {
+            method: "POST",
+            headers: new Headers({"Content-Type": "application/json"}),
+            body: JSON.stringify({movieid: this.props.id, review: this.state.review, rate: this.state.rating})
+          });
+      
+          fetch(request)
+          .then(() => {
+              alert('Thanks for the response')
+          });
+
         this.setState({ loginFormOpen: false });
     }
 
@@ -52,7 +67,7 @@ class Rate extends React.Component {
                                 </div>
                             </li>
                             <li><textarea placeholder="Review..." className="review" type="text" name="review" value={this.state.review} onChange={this.handleReviewChange}></textarea></li>
-                            <li><button onClick={this.hideLogin}>Submit</button></li>
+                            <li><button onClick={this.submitReviews}>Submit</button></li>
                         </ul>
                         <button onClick={this.removeRating} className="remoteRating">Remove Rating</button>
                     </div>

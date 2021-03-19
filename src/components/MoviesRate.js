@@ -3,7 +3,7 @@ import Rate from './Rate';
 
 class MoviesRate extends React.Component{
     render() {
-        return (<Rate value="voteButton" action="Rate"/>);
+        return (<Rate value="voteButton" action="Rate" id={this.props.id}/>);
     }
     
 }
