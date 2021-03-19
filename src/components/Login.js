@@ -4,7 +4,7 @@ import Modal from "react-modal";
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loginFormOpen: false, email: "", password: "" , signUprequest: 'Sign Up', type: 'Don\'t have a account ?'};
+    this.state = { loginFormOpen: false, email: "", password: "" , signUprequest: 'Sign Up', type: 'Don\'t have an account ?'};
   }
 
   showLogin = () => {
@@ -12,7 +12,7 @@ class Login extends React.Component {
   };
 
   hideLogin = () => {
-    this.setState({ loginFormOpen: false });
+    this.setState({ loginFormOpen: false , email : '', password : ''});
   };
 
   handleChange = (event) => {
@@ -20,36 +20,53 @@ class Login extends React.Component {
   };
 
   changeRequestHandle = () => {
-    if(this.state.type === 'Already have a account ?'){
-      this.setState({type : 'Don\'t have a account ?', signUprequest: 'Sign Up'});
+    if(this.state.type === 'Already have an account ?'){
+      this.setState({type : 'Don\'t have an account ?', signUprequest: 'Sign Up'});
     }else{
-      this.setState({type : 'Already have a account ?', signUprequest: 'Sign In'}); 
+      this.setState({type : 'Already have an account ?', signUprequest: 'Sign In'}); 
     }
   }
 
-  login = () => {
-    const req = new Request("/api/users", {
+  // login = () => {
+  //   const req = new Request("/api/users", {
+  //     method: "POST",
+  //     headers: new Headers({
+  //       "Content-Type": "application/json",
+  //     }),
+  //     body: JSON.stringify({
+  //       email: this.state.email,
+  //       password: this.state.password,
+  //     }),
+  //   });
+
+  //   fetch(req)
+  //   .then(resp => resp.json())
+  //     .then((resp) =>{ 
+  //       if(resp.status === 201 || resp.status === 200){
+  //         this.setState({ loginFormOpen: false });
+  //         this.setState({email : '', password : ''})
+  //       }else{
+  //         // alert(resp.error);
+  //       }
+  //     }).catch((err) => console.log(err));
+  // };
+
+
+  userLogIn = () => {
+    const request = new Request("/api/sessions", {
       method: "POST",
-      headers: new Headers({
-        "Content-Type": "application/json",
-      }),
-      body: JSON.stringify({
-        email: this.state.email,
-        password: this.state.password,
-      }),
+      headers: new Headers({"Content-Type": "application/json",}),
+      body: JSON.stringify({email: this.state.email,password: this.state.password,})
     });
 
-    fetch(req)
+    fetch(request)
     .then(resp => resp.json())
-      .then((resp) =>{ 
-        if(resp.status === 201 || resp.status === 200){
-          this.setState({ loginFormOpen: false });
-          this.setState({email : '', password : ''})
-        }else{
-          // alert(resp.error);
-        }
-      }).catch((err) => console.log(err));
-  };
+    .then((resp) => {
+      if(resp.status !== 204){
+        alert(resp.error);
+      }
+    })
+  }
 
   render() {
     return (
@@ -68,7 +85,7 @@ class Login extends React.Component {
             <input type="password" name="password" value={this.state.password} onChange={this.handleChange}></input>
             <div className="btnContainer">
               <>
-                <button onClick={this.login}>{this.state.signUprequest}</button>
+                <button onClick={this.userLogIn}>{this.state.signUprequest}</button>
                 <p>{this.state.type}<span onClick={this.changeRequestHandle}>{this.state.signUprequest}</span></p>
               </>
             </div>
