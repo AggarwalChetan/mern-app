@@ -5,10 +5,15 @@ import { FaStar } from 'react-icons/fa';
 class Rate extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { loginFormOpen: false, review: '', rating : 0, hover : 0, id : ''};
+        this.state = { loginFormOpen: false, review: '', rating : 0, hover : 0, id : '', submitFlag : false};
     };
 
     handleSetRating = (event) => {
+        if(this.state.submitFlag === true){
+            alert('Already Rated');
+            return;
+        }
+
         this.setState({[event.target.name] : event.target.value});
     }
 
@@ -32,10 +37,14 @@ class Rate extends React.Component {
               alert('Thanks for the response')
           });
 
-        this.setState({ loginFormOpen: false });
+        this.setState({ loginFormOpen: false , submitFlag : true});
     }
 
     handleReviewChange = (event) => {
+        if(this.state.submitFlag === true){
+            alert('Already Reviewed');
+            return;
+        }
         this.setState({ [event.target.name]: event.target.value });
     }
 
@@ -71,7 +80,6 @@ class Rate extends React.Component {
                         </ul>
                         <button onClick={this.removeRating} className="remoteRating">Remove Rating</button>
                     </div>
-
                 </Modal>
             </>
         );
