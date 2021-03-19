@@ -4,7 +4,7 @@ import Modal from "react-modal";
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loginFormOpen: false, email: "", password: "" };
+    this.state = { loginFormOpen: false, email: "", password: "" , signUprequest: 'Sign Up', type: 'Don\'t have an account ?'};
   }
 
   showLogin = () => {
@@ -19,6 +19,14 @@ class Login extends React.Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  changeRequestHandle = () => {
+    if(this.state.type === 'Already have an account ?'){
+      this.setState({type : 'Don\'t have an account ?', signUprequest: 'Sign Up'});
+    }else{
+      this.setState({type : 'Already have an account ?', signUprequest: 'Sign In'}); 
+    }
+  }
+
   login = () => {
     const req = new Request("/api/users", {
       method: "POST",
@@ -30,6 +38,7 @@ class Login extends React.Component {
         password: this.state.password,
       }),
     });
+
     fetch(req)
       .then((resp) =>{ 
         if(resp.status === 201){
@@ -50,30 +59,16 @@ class Login extends React.Component {
         <Modal className="login" isOpen={this.state.loginFormOpen}>
           <div className="loginContainer">
             <div className="closebuttonContainer">
-              <button className="closebutton" onClick={this.hideLogin}>
-                X
-              </button>
+              <button className="closebutton" onClick={this.hideLogin}>X</button>
             </div>
             <label>Email</label>
-            <input
-              type="text"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-            ></input>
+            <input type="text" name="email" value={this.state.email}onChange={this.handleChange}></input>
             <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-            ></input>
+            <input type="password" name="password" value={this.state.password} onChange={this.handleChange}></input>
             <div className="btnContainer">
               <>
-                <button onClick={this.login}>Sign In</button>
-                <p>
-                  Don't have an account ? <span>Sign Up</span>
-                </p>
+                <button onClick={this.login}>{this.state.signUprequest}</button>
+                <p>{this.state.type}<span onClick={this.changeRequestHandle}>{this.state.signUprequest}</span></p>
               </>
             </div>
           </div>
