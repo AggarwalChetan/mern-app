@@ -25,6 +25,7 @@ class Login extends React.Component {
     }else{
       this.setState({type : 'Already have an account ?', signUprequest: 'Sign In'}); 
     }
+    this.setState({email : '', password : ''});
   }
 
   // login = () => {
