@@ -38,22 +38,22 @@ class Login extends React.Component {
   
       fetch(request)
       .then(resp => {
-        if(this.state.email === '' && this.state.password === ''){
-          alert('Email Id and Password is not present');
-          return;
-        }else if(this.state.password === ''){
-          alert('Password is not present');
-          return;
-        }else if(this.state.email === ''){
-          alert('Email Id is not present');
-          return;
-        }else if(this.state.email !== '' && this.state.password !== ''){
-          alert('Incorrect Email or Password');
+
+        if(resp.status === 400){
+          if(this.state.email === '' && this.state.password === ''){
+            alert('Email Id and Password is not present');
+          }else if(this.state.password === ''){
+            alert('Password is not present');
+          }else if(this.state.email === ''){
+            alert('Email Id is not present');
+          }else if(this.state.email !== '' && this.state.password !== ''){
+            alert('Incorrect Email or Password');
+          }
           return;
         }
-          alert("Sign In Successful");
-          this.setState({ loginFormOpen: false , email : '', password : ''});
-          window.location = '/user-profile';
+        alert("Sign In Successful");
+        this.setState({ loginFormOpen: false , email : '', password : ''});
+        window.location = '/user-profile';
       })
 
     }else{
