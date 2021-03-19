@@ -1,7 +1,6 @@
 import React from 'react';
 import { useHistory, useParams } from 'react-router';
-import Login from './Login';
-import MoviesByIdInfo from './MoviesByIdInfo'
+import UsersMoviesByIdInfo from './UsersMoviesByIdInfo'
 
 function UserExploreMovies (){
     let history = useHistory();
@@ -17,7 +16,7 @@ function UserExploreMovies (){
             <header>
               <button className="homeMovies" onClick={handleExplore}>Home</button>
             </header>
-            <MoviesByIdInfo id={dataId.id}/>
+            <UsersMoviesByIdInfo id={dataId.id}/>
           </>);
 }
 
