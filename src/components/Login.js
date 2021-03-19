@@ -4,7 +4,7 @@ import Modal from "react-modal";
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loginFormOpen: false, email: "", password: "" , signUprequest: 'Sign Up', type: 'Don\'t have an account ?'};
+    this.state = { loginFormOpen: false, email: "", password: "" , signUprequest: 'Sign Up', type: 'Don\'t have a account ?'};
   }
 
   showLogin = () => {
@@ -20,10 +20,10 @@ class Login extends React.Component {
   };
 
   changeRequestHandle = () => {
-    if(this.state.type === 'Already have an account ?'){
-      this.setState({type : 'Don\'t have an account ?', signUprequest: 'Sign Up'});
+    if(this.state.type === 'Already have a account ?'){
+      this.setState({type : 'Don\'t have a account ?', signUprequest: 'Sign Up'});
     }else{
-      this.setState({type : 'Already have an account ?', signUprequest: 'Sign In'}); 
+      this.setState({type : 'Already have a account ?', signUprequest: 'Sign In'}); 
     }
   }
 
