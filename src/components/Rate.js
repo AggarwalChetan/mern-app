@@ -20,7 +20,7 @@ class Rate extends React.Component {
         this.setState({ loginFormOpen: false });
     }
 
-    handleChange = (event) => {
+    handleReviewChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
     }
 
@@ -51,7 +51,7 @@ class Rate extends React.Component {
                                 })}
                                 </div>
                             </li>
-                            <li><textarea placeholder="Review..." className="review" type="text" name="review" value={this.state.review} onChange={this.handleChange}></textarea></li>
+                            <li><textarea placeholder="Review..." className="review" type="text" name="review" value={this.state.review} onChange={this.handleReviewChange}></textarea></li>
                             <li><button onClick={this.hideLogin}>Submit</button></li>
                         </ul>
                         <button onClick={this.removeRating} className="remoteRating">Remove Rating</button>
