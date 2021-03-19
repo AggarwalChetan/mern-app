@@ -1,5 +1,6 @@
 import React from 'react';
 import UsersMovies from './UsersMovies';
+import MoviesSignOut from './MoviesSignOut';
 
 class UsersApp extends React.Component {
   constructor(props) {
@@ -38,15 +39,6 @@ class UsersApp extends React.Component {
     this.setState({ searchValue: event.target.value });
   }
 
-  signOut = () => {
-    const request = new Request("/api/me", {
-        method: "DELETE"
-      });
-  
-      fetch(request)
-      .then(() => {window.location = '/'});
-  }
-
   render() {
     return (
       <>
@@ -55,7 +47,7 @@ class UsersApp extends React.Component {
           <form onSubmit={this.handleOnSubmit}>
             <input className="search" type="search" placeholder="Search Movies" value={this.state.searchValue} onChange={this.handleOnChange} />
           </form>
-          <button className="signIn" onClick={this.signOut}>Sign Out</button>
+          <MoviesSignOut location=''/>
         </header>
 
         <div className="movie-container">
