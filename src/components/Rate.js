@@ -35,8 +35,9 @@ class Rate extends React.Component {
                         <ul className="rateBtnContainer">
                             <li><Star/></li>
                             <li><textarea placeholder="Review..." className="review"type="text" name="review" value={this.state.review} onChange={this.handleChange}></textarea></li>              
-                            <li><button>Submit</button></li>              
+                            <li><button>Submit</button></li>             
                         </ul>
+                        <button className="remoteRating">Remove Rating</button>
                     </div>
                      
                 </Modal>

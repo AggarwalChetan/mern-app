@@ -300,6 +300,9 @@ header {
   max-width: 450px;
   min-height: 300px;
   background-color: #12142c;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .ratingClosebutton {
@@ -466,4 +469,15 @@ header {
 
 .moviesByIdRate:focus {
   outline: 0;
+}
+
+.remoteRating{
+  background-color: #12142c;
+  border: none;
+  cursor: pointer;
+  color: white;
+  outline: none;
+  justify-content: center;
+  width: 100%;
+  padding:  5px 0;
 }
