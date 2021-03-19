@@ -10,13 +10,22 @@ class Rate extends React.Component {
 
     handleSetRating = (event) => {
         if(this.state.submitFlag === true){
-            alert('Already Rated');
+            alert('Remove Previous response first');
             return;
         }
 
         this.setState({[event.target.name] : event.target.value});
     }
 
+    handleReviewChange = (event) => {
+        if(this.state.submitFlag === true){
+            alert('Remove Previous response first');
+            return;
+        }
+        this.setState({ [event.target.name]: event.target.value });
+    }
+
+    
     showLogin = () => {
         this.setState({ loginFormOpen: true });
     }
@@ -38,14 +47,6 @@ class Rate extends React.Component {
           });
 
         this.setState({ loginFormOpen: false , submitFlag : true});
-    }
-
-    handleReviewChange = (event) => {
-        if(this.state.submitFlag === true){
-            alert('Already Reviewed');
-            return;
-        }
-        this.setState({ [event.target.name]: event.target.value });
     }
 
     removeRating = () => {
