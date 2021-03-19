@@ -10,7 +10,7 @@ class Rate extends React.Component {
 
     handleSetRating = (event) => {
         if(this.state.submitFlag === true){
-            alert('Remove Previous response first');
+            alert('Please remove previous response first');
             return;
         }
 
@@ -19,13 +19,13 @@ class Rate extends React.Component {
 
     handleReviewChange = (event) => {
         if(this.state.submitFlag === true){
-            alert('Remove Previous response first');
+            alert('Please remove previous response first');
             return;
         }
         this.setState({ [event.target.name]: event.target.value });
     }
 
-    
+
     showLogin = () => {
         this.setState({ loginFormOpen: true });
     }
@@ -79,7 +79,7 @@ class Rate extends React.Component {
                             <li><textarea placeholder="Review..." className="review" type="text" name="review" value={this.state.review} onChange={this.handleReviewChange}></textarea></li>
                             <li><button onClick={this.submitReviews}>Submit</button></li>
                         </ul>
-                        <button onClick={this.removeRating} className="remoteRating">Remove Rating</button>
+                        <button onClick={this.removeRating} className="remoteRating">Remove Response</button>
                     </div>
                 </Modal>
             </>
