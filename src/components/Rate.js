@@ -49,7 +49,7 @@ class Rate extends React.Component {
     }
 
     removeRating = () => {
-        this.setState({rating : 0, review : ''});
+        this.setState({rating : 0, review : '', submitFlag : false});
     }
 
     render() {
