@@ -8,7 +8,7 @@ import { FaStar } from 'react-icons/fa';
 class UsersMoviesByIdInfo extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { movies : [], id : 522938};
+    this.state = { movies : []};
   };
 
   // for home page
@@ -24,6 +24,17 @@ class UsersMoviesByIdInfo extends React.Component {
       .then((data) => {this.setState({movies : data});});
   }
 
+  handleTemp = () => {
+        const request = new Request("/api/users/me", {
+            method: "GET"
+          });
+      
+          fetch(request)
+          .then((request) => {
+              console.log(request.json());
+          });
+  }
+
   render() {
     return (
       <>
@@ -37,9 +48,10 @@ class UsersMoviesByIdInfo extends React.Component {
             <li className="overview"><div>Overview</div></li>
             <li><label className="date">IMDb </label><label className="spaceBetweenText">{this.state.movies.vote_average} {this.state.movies.release_date}</label></li>
             <li><div className="overviewText">{this.state.movies.overview}</div></li>
-            <li><div>{<Rate value="moviesByIdRate" action="Rate"/>}</div></li>
-            <li className="date"><label >Rating Count -  </label><label className="spaceBetweenText">0  </label>Review Count - 0</li>
+            <li><div>{<Rate value="moviesByIdRate" action="Rate" id={this.props.id}/>}</div></li>
+            <li className="date"><label >Rating Count -  </label><label className="spaceBetweenText">0  </label>Review Count - 0<label className="spaceBetweenText"> Average</label> Rating Count - 0</li>
             <li><div className="overviewText">Reviews  {[...Array(10)].map(() => {return <FaStar color="yellow" size={13}/>})}</div></li>
+            {/* <li><button onClick={this.handleTemp}>temp</button></li> */}
             </ul>
             
         </div>

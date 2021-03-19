@@ -41,7 +41,6 @@ class MoviesByIdInfo extends React.Component {
             <li className="date"><label >Rating Count -  </label><label className="spaceBetweenText">0  </label>Review Count - 0</li>
             <li><div className="overviewText">Reviews  {[...Array(10)].map(() => {return <FaStar color="yellow" size={13}/>})}</div></li>
             </ul>
-            
         </div>
       </div>
       </>
