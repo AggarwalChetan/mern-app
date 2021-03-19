@@ -1,8 +1,7 @@
 import React from 'react';
-import Movie from './components/Movies';
-import Login from './components/Login';
+import Movie from './Movies';
 
-class App extends React.Component {
+class UsersApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = { movies: [], searchValue: ''};
@@ -39,6 +38,15 @@ class App extends React.Component {
     this.setState({ searchValue: event.target.value });
   }
 
+  signOut = () => {
+    const request = new Request("/api/me", {
+        method: "DELETE"
+      });
+  
+      fetch(request)
+      .then(() => {window.location = '/'});
+  }
+
   render() {
     return (
       <>
@@ -47,7 +55,7 @@ class App extends React.Component {
           <form onSubmit={this.handleOnSubmit}>
             <input className="search" type="search" placeholder="Search Movies" value={this.state.searchValue} onChange={this.handleOnChange} />
           </form>
-          <Login value="signIn" action="Sign In" />
+          <button className="signIn" onClick={this.signOut}>Sign Out</button>
         </header>
 
         <div className="movie-container">
@@ -59,4 +67,4 @@ class App extends React.Component {
 
 }
 
-export default App;
+export default UsersApp;

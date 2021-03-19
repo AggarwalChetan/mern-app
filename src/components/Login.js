@@ -28,33 +28,8 @@ class Login extends React.Component {
     this.setState({email : '', password : ''});
   }
 
-  // login = () => {
-  //   const req = new Request("/api/users", {
-  //     method: "POST",
-  //     headers: new Headers({
-  //       "Content-Type": "application/json",
-  //     }),
-  //     body: JSON.stringify({
-  //       email: this.state.email,
-  //       password: this.state.password,
-  //     }),
-  //   });
-
-  //   fetch(req)
-  //   .then(resp => resp.json())
-  //     .then((resp) =>{ 
-  //       if(resp.status === 201 || resp.status === 200){
-  //         this.setState({ loginFormOpen: false });
-  //         this.setState({email : '', password : ''})
-  //       }else{
-  //         // alert(resp.error);
-  //       }
-  //     }).catch((err) => console.log(err));
-  // };
-
-
   userLogIn = () => {
-    if(this.state.signUprequest === 'Sign Up'){
+    if(this.state.signInrequest === 'Sign In'){
       const request = new Request("/api/sessions", {
         method: "POST",
         headers: new Headers({"Content-Type": "application/json"}),
@@ -68,6 +43,7 @@ class Login extends React.Component {
         }else if(resp.status === 204){
           alert("Sign In Successful");
           this.setState({ loginFormOpen: false , email : '', password : ''});
+          window.location = '/user-profile';
         }
       })
 
@@ -86,6 +62,7 @@ class Login extends React.Component {
         }else if(resp.status === 201){
           alert("Sign Up Successful");
           this.setState({ loginFormOpen: false , email : '', password : ''});
+          window.location = '/user-profile';
         }
       })
     }
