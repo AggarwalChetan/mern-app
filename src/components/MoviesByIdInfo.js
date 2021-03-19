@@ -2,7 +2,7 @@
 import React from 'react';
 import MoviesPoster from './MoviesPoster';
 import MoviesInfo from './MoviesInfo';
-import MoviesRate from './MoviesRate';
+import Rate from './Rate';
 
 class MoviesByIdInfo extends React.Component {
   constructor(props) {
@@ -36,6 +36,7 @@ class MoviesByIdInfo extends React.Component {
             <li className="overview"><div>Overview</div></li>
             <li><label className="date">IMDb </label><label className="spaceBetweenText">{this.state.movies.vote_average} {this.state.movies.release_date}</label></li>
             <li><div className="overviewText">{this.state.movies.overview}</div></li>
+            <li><div>{<Rate value="moviesByIdRate" action="Rate"/>}</div></li>
             </ul>
             
         </div>

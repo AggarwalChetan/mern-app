@@ -16,7 +16,6 @@ function MoviesOverview(props) {
             <p>{props.overview}</p>            
             <h5>Total Vote Count - {props.vote_count}</h5>
             <div className="buttonContainer">
-            {/* <MoviesRate/> */}
                 <Login value="voteButton" action="Rate"/>
                 <button className="exploreMovie" onClick={handleExplore}>Explore</button>
             </div>
