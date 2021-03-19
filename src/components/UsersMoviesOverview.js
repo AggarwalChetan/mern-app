@@ -6,7 +6,7 @@ function UsersMoviesOverview(props) {
     let history = useHistory();
 
     function handleExplore (){    
-        history.push(`/${props.id}`);
+        history.push(`/user-profile/${props.id}`);
     }
 
     return (
