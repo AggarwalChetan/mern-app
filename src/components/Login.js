@@ -4,7 +4,7 @@ import Modal from "react-modal";
 class Login extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { loginFormOpen: false, email: "", password: "" , signUprequest: 'Sign Up', signInrequest: 'Sign In', type: 'Don\'t have an account ?'};
+    this.state = { loginFormOpen: false, email: "", password: "" , signUprequest: 'Sign Up', signInrequest: 'Sign In', type: 'Don\'t have an account ?', emailError : '', passError : ''};
   }
 
   showLogin = () => {
@@ -16,10 +16,12 @@ class Login extends React.Component {
   };
 
   handleChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value, emailError : '', passError : ''});
   };
 
   changeRequestHandle = () => {
+    this.setState({emailError : '', passError : ''});
+
     if(this.state.type === 'Already have an account ?'){
       this.setState({type : 'Don\'t have an account ?', signUprequest: 'Sign Up', signInrequest : 'Sign In'});
     }else{
@@ -29,6 +31,14 @@ class Login extends React.Component {
   }
 
   userLogIn = () => {
+
+    if(this.state.email === ""){
+      this.setState({emailError : 'Email Id not present'});
+    }else if(this.state.password === ''){
+      this.setState({passError : 'Password not present'});
+    }
+
+
     if(this.state.signInrequest === 'Sign In'){
       const request = new Request("/api/sessions", {
         method: "POST",
@@ -40,17 +50,17 @@ class Login extends React.Component {
       .then(resp => {
         if(resp.status === 400){
           if(this.state.email === '' && this.state.password === ''){
-            alert('Email Id and Password is not present');
+            this.setState({emailError : 'Email not present', passError : 'Password not present'});
           }else if(this.state.password === ''){
-            alert('Password is not present');
+            this.setState({passError : 'Password not present'});
           }else if(this.state.email === ''){
-            alert('Email Id is not present');
+            this.setState({emailError : 'Email Id not present'});
           }else if(this.state.email !== '' && this.state.password !== ''){
             alert('Incorrect Email or Password');
           }
           return;
         }
-        this.setState({ loginFormOpen: false , email : '', password : ''});
+        this.setState({ loginFormOpen: false , email : '', password : '', emailError : '', passError : ''});
         window.location = '/user-profile';
       })
 
@@ -62,14 +72,21 @@ class Login extends React.Component {
       });
   
       fetch(request)
-      .then(resp => resp.json())
-      .then((resp) => {
+      .then(resp => {
         if(resp.status === 400){
-          alert(resp.error);
-        }else if(resp.status === 201){
-          this.setState({ loginFormOpen: false , email : '', password : ''});
-          window.location = '/user-profile';
+          if(this.state.email === '' && this.state.password === ''){
+            this.setState({emailError : 'Email not present', passError : 'Password not present'});
+          }else if(this.state.password === ''){
+            this.setState({passError : 'Password not present'});
+          }else if(this.state.email === ''){
+            this.setState({emailError : 'Email Id not present'});
+          }else if(this.state.email !== '' && this.state.password !== ''){
+            alert('Email Already Present');
+          }
+          return;
         }
+        this.setState({ loginFormOpen: false , email : '', password : '',  emailError : '', passError : ''});
+        window.location = '/user-profile';
       })
     }
   }
@@ -87,8 +104,10 @@ class Login extends React.Component {
             </div>
             <label>Email</label>
             <input type="text" name="email" value={this.state.email}onChange={this.handleChange}></input>
+            <p className="errorMsg">{this.state.emailError}</p>
             <label>Password</label>
             <input type="password" name="password" value={this.state.password} onChange={this.handleChange}></input>
+            <p className="errorMsg">{this.state.passError}</p>
             <div className="btnContainer">
               <>
                 <button onClick={this.userLogIn}>{this.state.signInrequest}</button>
