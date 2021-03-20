@@ -500,6 +500,11 @@ header {
   padding-left: 1.5rem;
 }
 
+.reviewOverviewText:hover{
+  cursor: pointer;
+  color: red;
+}
+
 @media (max-width:640px){
   .homeMovies {
     font-size: .8rem;

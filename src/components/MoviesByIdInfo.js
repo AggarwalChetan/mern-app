@@ -3,7 +3,7 @@ import React from 'react';
 import MoviesPoster from './MoviesPoster';
 import MoviesInfo from './MoviesInfo';
 import Login from './Login';
-import { FaStar } from 'react-icons/fa';
+import MoviesReview from './MoviesReview';
 
 class MoviesByIdInfo extends React.Component {
   constructor(props) {
@@ -39,7 +39,7 @@ class MoviesByIdInfo extends React.Component {
             <li><div className="overviewText">{this.state.movies.overview}</div></li>
             <li><div>{ <Login value="moviesByIdRate" action="Rate"/>}</div></li>
             <li className="date"><label >Rating Count -  </label><label className="spaceBetweenText">0  </label>Review Count - 0</li>
-            <li><div className="overviewText">Reviews  {[...Array(10)].map(() => {return <FaStar color="yellow" size={13}/>})}</div></li>
+            <li><MoviesReview/></li>
             </ul>
         </div>
       </div>
