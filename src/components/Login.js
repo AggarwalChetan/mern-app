@@ -38,7 +38,6 @@ class Login extends React.Component {
   
       fetch(request)
       .then(resp => {
-
         if(resp.status === 400){
           if(this.state.email === '' && this.state.password === ''){
             alert('Email Id and Password is not present');
@@ -51,7 +50,6 @@ class Login extends React.Component {
           }
           return;
         }
-        alert("Sign In Successful");
         this.setState({ loginFormOpen: false , email : '', password : ''});
         window.location = '/user-profile';
       })
@@ -69,7 +67,6 @@ class Login extends React.Component {
         if(resp.status === 400){
           alert(resp.error);
         }else if(resp.status === 201){
-          alert("Sign Up Successful");
           this.setState({ loginFormOpen: false , email : '', password : ''});
           window.location = '/user-profile';
         }

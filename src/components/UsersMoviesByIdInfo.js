@@ -51,9 +51,11 @@ class UsersMoviesByIdInfo extends React.Component {
             <li><div>{<Rate value="moviesByIdRate" action="Rate" id={this.props.id}/>}</div></li>
             <li className="date"><label >Rating Count -  </label><label className="spaceBetweenText">0  </label>Review Count - 0<label className="spaceBetweenText"> Average</label> Rating Count - 0</li>
             <li><div className="overviewText">Reviews  {[...Array(10)].map(() => {return <FaStar color="yellow" size={13}/>})}</div></li>
-            {/* <li><button onClick={this.handleTemp}>temp</button></li> */}
+            {/* <ol className="reviewsTable">Hi</ol>
+            <ol className="reviewsTable">Hi</ol>
+            <ol className="reviewsTable">Hi</ol>
+            <ol className="reviewsTable">Hi</ol> */}
             </ul>
-            
         </div>
       </div>
       </>
