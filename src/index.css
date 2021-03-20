@@ -493,3 +493,27 @@ header {
   padding: 0.4rem;
   padding-left: 1.5rem;
 }
+
+@media (max-width:640px){
+  .homeMovies {
+    font-size: .8rem;
+    padding: 0;
+    background-color: transparent;
+  }
+
+  .search {
+    font-size: 0.7rem;
+    padding: 0;
+    border-radius: 30px;
+  }
+
+  .signIn {
+    font-size: .8rem;
+    padding: 0;
+  }
+
+  header {
+    justify-content:space-evenly;
+  }
+  
+}
