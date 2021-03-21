@@ -527,6 +527,7 @@ header {
 .date{
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
   padding-bottom: 0.8rem;
+  padding-top: 0.8rem;
 }
 
 @media (max-width:640px){
