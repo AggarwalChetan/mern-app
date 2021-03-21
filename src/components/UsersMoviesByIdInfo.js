@@ -3,7 +3,7 @@ import React from 'react';
 import MoviesPoster from './MoviesPoster';
 import MoviesInfo from './MoviesInfo';
 import Rate from './Rate';
-import MoviesReview from './MoviesReview';
+import MoviesReviewUsers from './MoviesReviewUsers';
 
 
 class UsersMoviesByIdInfo extends React.Component {
@@ -49,13 +49,8 @@ class UsersMoviesByIdInfo extends React.Component {
             <li className="overview"><div>Overview</div></li>
             <li><label className="date">IMDb </label><label className="spaceBetweenText">{this.state.movies.vote_average} {this.state.movies.release_date}</label></li>
             <li><div className="overviewText">{this.state.movies.overview}</div></li>
-            <li><div>{<Rate value="moviesByIdRate" action="Rate" id={this.props.id}/>}</div></li>
-            <li className="date"><label >Rating Count -  </label><label className="spaceBetweenText">0  </label>Review Count - 0<label className="spaceBetweenText"> Average</label> Rating Count - 0</li>
-            <li><MoviesReview/></li>
-            {/* <ol className="reviewsTable">Hi</ol>
-            <ol className="reviewsTable">Hi</ol>
-            <ol className="reviewsTable">Hi</ol>
-            <ol className="reviewsTable">Hi</ol> */}
+            {/* <li><div>{<Rate value="moviesByIdRate" action="Rate" id={this.props.id}/>}</div></li> */}
+            <li><MoviesReviewUsers id={this.props.id} value="moviesByIdRate" action="Rate" id={this.props.id}/></li>
             </ul>
         </div>
       </div>

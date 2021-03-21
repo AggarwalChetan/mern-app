@@ -38,8 +38,8 @@ class MoviesByIdInfo extends React.Component {
             <li><label className="date">IMDb </label><label className="spaceBetweenText">{this.state.movies.vote_average} {this.state.movies.release_date}</label></li>
             <li><div className="overviewText">{this.state.movies.overview}</div></li>
             <li><div>{ <Login value="moviesByIdRate" action="Rate"/>}</div></li>
-            <li className="date"><label >Rating Count -  </label><label className="spaceBetweenText">0  </label>Review Count - 0</li>
-            <li><MoviesReview/></li>
+            {/* <li className="date"><label >Rating Count -  </label><label className="spaceBetweenText">0  </label>Review Count - 0</li> */}
+            <li><MoviesReview id={this.props.id}/></li>
             </ul>
         </div>
       </div>

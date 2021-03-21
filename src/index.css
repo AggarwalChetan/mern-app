@@ -496,13 +496,37 @@ header {
 }
 
 .reviewsTable {
-  padding: 0.4rem;
-  padding-left: 1.5rem;
+  padding: 0.2rem;
+  padding-left: 1rem;
 }
 
 .reviewOverviewText:hover{
   cursor: pointer;
   color: red;
+}
+
+.rating2 {
+  width: 100%;
+  min-height: 100vh;
+  padding: 0 20px;
+  display: flex;
+}
+
+.rating2 .ratingContainer {
+  padding: 60px;
+  margin: auto;
+  width: 100%;
+  max-width: 450px;
+  min-height: 300px;
+  background-color: #12142c;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.date{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  padding-bottom: 0.8rem;
 }
 
 @media (max-width:640px){
@@ -525,6 +549,10 @@ header {
 
   header {
     justify-content:space-evenly;
+  }
+  
+  .bigStar {
+    margin-left: 32%; 
   }
   
 }
