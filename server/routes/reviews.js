@@ -73,10 +73,11 @@ router.patch("/", auth.authenticate, (req, res) => {
         res.status(400).send({ error: "User not found" });
         return;
       }
-      const query = { movieid: req.body.movieid };
-      user.movies.findOneAndUpdate(query, {
-        rate: req.body.rate,
-        review: req.body.review,
+      user.movies.forEach((movie) => {
+        if (movie.movieid === req.body.movieid) {
+          movie.rate = req.body.rate;
+          movie.review = req.body.review;
+        }
       });
       user.save();
       res.status(204).send();

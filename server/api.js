@@ -5,6 +5,7 @@ const { default: axios } = require('axios');
 const users = require('./routes/users');
 const sessions = require('./routes/sessions');
 const reviews = require('./routes/reviews');
+const imdbmovies = require('./routes/movies');
 
 const router = express.Router();
 
@@ -56,5 +57,7 @@ router.use('/users', users);
 router.use('/sessions', sessions);
 
 router.use('/reviews', reviews);
+
+router.use('/movies', imdbmovies);
 
 module.exports = router;

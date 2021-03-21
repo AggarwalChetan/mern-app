@@ -19,17 +19,20 @@ const userSchema = new Schema({
     type: Date,
     default: Date.now(),
   },
-  
+
   movies: [
     {
       movieid: {
         type: String,
+        required:true
       },
       rate: {
         type: Number,
+        required:true
       },
       review: {
         type: String,
+        required:true
       },
     },
   ],
