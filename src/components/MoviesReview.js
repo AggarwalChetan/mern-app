@@ -41,7 +41,7 @@ class MoviesReview extends React.Component {
         return (
             <>
             <div className="date"><label >Rating Count -  </label><label className="spaceBetweenText">{this.state.ratingCount}  </label>Review Count - {this.state.reviewCount}<label className="spaceBetweenText"> Average</label> Rating Count - {this.state.averageRatingCount}</div>
-                <span onClick={this.openReviews} className="reviewOverviewText">Reviews  {[...Array(10)].map(() => { return <FaStar color="yellow" size={13} /> })}</span>
+                <span className="reviewOverviewText">Reviews  {[...Array(10)].map(() => { return <FaStar color="yellow" size={13} /> })}</span>
                 <Modal className="rating2" isOpen={this.state.reviewFormOpen}>
                     <div className="ratingContainer">
                         <div className="ratingClosebuttonContainer">
