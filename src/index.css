@@ -530,6 +530,15 @@ header {
   padding-top: 0.8rem;
 }
 
+.ul{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+
+}
+
+.ol{
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+
 @media (max-width:640px){
   .homeMovies {
     font-size: .8rem;

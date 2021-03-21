@@ -28,23 +28,14 @@ class MoviesReviewUsers extends React.Component {
                 let localReview = [];
                 let localEmail = [];
                 let localRating = [];
-                let localData1 = {};
-                let localData = [];
                 data.forEach(data => {
-                    // localReview[idx] = data.review;
-                    // localEmail[idx] = data.email;
-                    // localRating[idx] = data.rate;
-
-                    localData1 = {
-                        review : data.review,
-                        email : data.email,
-                        rate : data.rate
-                    }
-                    localData[idx] = {localData1};
+                    localReview[idx] = data.review;
+                    localEmail[idx] = data.email;
+                    localRating[idx] = data.rate;
                     ++ idx;
                 });
 
-                this.setState({reviewData : localData})
+                this.setState({email : localEmail, rate : localRating, review:localReview})
             });
     }
 
@@ -166,24 +157,17 @@ class MoviesReviewUsers extends React.Component {
                         <div className="ratingClosebuttonContainer">
                             <button className="ratingClosebutton" onClick={this.closeReviews}>X</button>
                         </div>
-                        {/* <div color="white">{[...Array(`${this.state.ratingCount}`)].reverse().map((index) => {
+                        <div color="white">{[...Array(`${this.state.ratingCount}`)].reverse().map((index) => {
                             let value = index - 1;
                                     return (
                                         <>
-                                        <ul>{this.state.email[value]}
-                                        <ol>{this.state.review[value]}</ol> 
-                                        <ol>{this.state.rate[value]}</ol>
-                                        </ul>
+                                        <ul className="ul">Email - {this.state.email[value]}</ul>
+                                        <ul className="ol">Review - {this.state.review[value]}</ul> 
+                                        <ul className="ol">Rating - {this.state.rate[value]}</ul>
                                         </>
                                     );
-                                }
-                                
-
-
-                                )}
-                                </div> */}
-                                {/* <div>{this.state.reviewData.forEach({
-                                })}</div> */}
+                                })}
+                                </div>
                     </div>
                     
                 </Modal>
