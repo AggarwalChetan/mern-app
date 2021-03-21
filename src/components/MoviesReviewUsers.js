@@ -5,11 +5,47 @@ import Modal from 'react-modal';
 class MoviesReviewUsers extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { reviewFormOpen: false , reviewCount : 0, ratingCount : 0, averageRatingCount : 0, loginFormOpen: false, review: '', rating : 0, hover : 0, id : '', submitFlag : false, reviewDone : false};
+        this.state = { reviewFormOpen: false , reviewCount : 0, ratingCount : 0, averageRatingCount : 0, loginFormOpen: false, review: '', rating : 0, hover : 0, id : '', submitFlag : false, reviewDone : false, email : [], review : [], rate : [], reviewData : []};
     }
 
     openReviews = () => {
         this.setState({ reviewFormOpen: true });
+
+        const request = new Request(`/api/movies/${this.props.id}`, {
+            method: "GET",
+        });
+
+        fetch(request)
+            .then((resp) => resp.json())
+            .then(resp => {
+                console.log(resp);
+                if(resp.error === 'movie not found'){
+                    return;
+                }
+
+                const data = resp.data;
+                let idx = 0;
+                let localReview = [];
+                let localEmail = [];
+                let localRating = [];
+                let localData1 = {};
+                let localData = [];
+                data.forEach(data => {
+                    // localReview[idx] = data.review;
+                    // localEmail[idx] = data.email;
+                    // localRating[idx] = data.rate;
+
+                    localData1 = {
+                        review : data.review,
+                        email : data.email,
+                        rate : data.rate
+                    }
+                    localData[idx] = {localData1};
+                    ++ idx;
+                });
+
+                this.setState({reviewData : localData})
+            });
     }
 
     closeReviews = () => {
@@ -35,7 +71,7 @@ class MoviesReviewUsers extends React.Component {
                     aValue += data.rate;
                 });
 
-                this.setState({ratingCount : `${resp.data.length}`, reviewCount : `${resp.data.length}`, averageRatingCount : `${aValue / resp.data.length}`})
+                this.setState({ratingCount : `${resp.data.length}`, reviewCount : `${resp.data.length}`, averageRatingCount : `${aValue / resp.data.length}`, email : `${resp.data.email}`})
             });
     }
 
@@ -130,11 +166,26 @@ class MoviesReviewUsers extends React.Component {
                         <div className="ratingClosebuttonContainer">
                             <button className="ratingClosebutton" onClick={this.closeReviews}>X</button>
                         </div>
-                        {/* <ul className="reviewsTable">Hi</ul>
-                        <ol></ol> */}
-                        <button onClick={this.componentDidMount}>Button</button>
-                    </div>
+                        {/* <div color="white">{[...Array(`${this.state.ratingCount}`)].reverse().map((index) => {
+                            let value = index - 1;
+                                    return (
+                                        <>
+                                        <ul>{this.state.email[value]}
+                                        <ol>{this.state.review[value]}</ol> 
+                                        <ol>{this.state.rate[value]}</ol>
+                                        </ul>
+                                        </>
+                                    );
+                                }
+                                
 
+
+                                )}
+                                </div> */}
+                                {/* <div>{this.state.reviewData.forEach({
+                                })}</div> */}
+                    </div>
+                    
                 </Modal>
                 </>
             </>

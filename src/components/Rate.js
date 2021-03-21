@@ -17,6 +17,30 @@ class Rate extends React.Component {
         this.setState({[event.target.name] : event.target.value});
     }
 
+    componentDidMount = (props) => {
+        const request = new Request(`/api/movies/${this.props.id}`, {
+            method: "GET",
+        });
+
+        fetch(request)
+            .then((resp) => resp.json())
+            .then(resp => {
+                console.log(resp);
+                if(resp.error === 'movie not found'){
+                    return;
+                }
+
+                const data = resp.data;
+                let aValue = 0;
+                data.forEach(data => {
+                    aValue += data.rate;
+                });
+
+                this.setState({ratingCount : `${resp.data.length}`, reviewCount : `${resp.data.length}`, averageRatingCount : `${aValue / resp.data.length}`, email : `${resp.data.email}`})
+            });
+    }
+
+    
     handleReviewChange = (event) => {
         if(this.state.submitFlag === true){
             alert('Please remove previous response first');
@@ -52,9 +76,9 @@ class Rate extends React.Component {
           fetch(request)
           .then(() => {
               alert('Thanks for the response')
+              this.setState({ loginFormOpen: false , submitFlag : true, reviewDone : true});
+              this.componentDidMount();
           });
-
-        this.setState({ loginFormOpen: false , submitFlag : true, reviewDone : true});
     }
 
     removeRating = () => {
