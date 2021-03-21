@@ -46,6 +46,10 @@ router.post('/', (req, res) => {
 
 router.get('/me', auth.authenticate, (req, res) => {
     User.findOne({ _id: req.session.userId }).then(user => {
+        if(!user){
+            res.status(400).send({ error: "user not logged in" });
+            return;
+        }
         res.send(user);
     }).catch(() => {
         res.status(500).send({ error: "Internal Server Error" , status : 500});
@@ -54,6 +58,9 @@ router.get('/me', auth.authenticate, (req, res) => {
 
 router.get('/:userId', (req, res) => {
     User.findOne({ _id: req.params.userId }).then(user => {
+        if(!user){
+            res.status(400).send({ error: "user not signed up" });
+        }
         res.send(user);
     }).catch(() => {
         res.status(500).send({ error: "Internal Server Error" , status : 500});

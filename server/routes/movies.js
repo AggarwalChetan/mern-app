@@ -75,29 +75,19 @@ router.post("/", auth.authenticate, (req, res) => {
     });
 });
 
-router.get("/:id", auth.authenticate, (req, res) => {
+router.get("/:id", (req, res) => {
   if (!req.body) {
     res.status(400).send({ error: "movieid is missing" });
     return;
   }
 
-  User.findOne({ _id: req.session.userId })
-    .then((user) => {
-      if (!user) {
-        res.status(400).send({ error: "User not found" });
-        return;
-      }
-
-      Movie.find({ movieid: req.params.id }).then((movie) => {
-        if(!movie){
-          res.status(400).send({error : "movie not found"});
-        }
-        res.status(200).send(movie);
-      });
-    })
-    .catch((err) => {
-      res.status(500).send({ error: "Internal Server Error" });
-    });
+  Movie.findOne({ movieid: req.params.id }).then((movie) => {
+    if (!movie) {
+      res.status(400).send({ error: "movie not found" });
+      return;
+    }
+    res.status(200).send(movie);
+  });
 });
 
 module.exports = router;
