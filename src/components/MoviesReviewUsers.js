@@ -24,11 +24,18 @@ class MoviesReviewUsers extends React.Component {
         fetch(request)
             .then((resp) => resp.json())
             .then(resp => {
+                console.log(resp);
                 if(resp.error === 'movie not found'){
                     return;
                 }
 
-                this.setState({ratingCount : `${resp.data.length}`, reviewCount : `${resp.data.length}`})
+                const data = resp.data;
+                let aValue = 0;
+                data.forEach(data => {
+                    aValue += data.rate;
+                });
+
+                this.setState({ratingCount : `${resp.data.length}`, reviewCount : `${resp.data.length}`, averageRatingCount : `${aValue / resp.data.length}`})
             });
     }
 
@@ -76,9 +83,9 @@ class MoviesReviewUsers extends React.Component {
           fetch(request)
           .then(() => {
               alert('Thanks for the response')
+              this.setState({ loginFormOpen: false , submitFlag : true, reviewDone : true});
+              this.componentDidMount();
           });
-
-        this.setState({ loginFormOpen: false , submitFlag : true, reviewDone : true});
     }
 
     removeRating = () => {
@@ -125,7 +132,7 @@ class MoviesReviewUsers extends React.Component {
                         </div>
                         {/* <ul className="reviewsTable">Hi</ul>
                         <ol></ol> */}
-                        {/* <button onClick={this.componentDidMount}>Button</button> */}
+                        <button onClick={this.componentDidMount}>Button</button>
                     </div>
 
                 </Modal>

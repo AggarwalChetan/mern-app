@@ -27,8 +27,13 @@ class MoviesReview extends React.Component {
                 if(resp.error === 'movie not found'){
                     return;
                 }
+                const data = resp.data;
+                let aValue = 0;
+                data.forEach(data => {
+                    aValue += data.rate;
+                });
 
-                this.setState({ratingCount : `${resp.data.length}`, reviewCount : `${resp.data.length}`})
+                this.setState({ratingCount : `${resp.data.length}`, reviewCount : `${resp.data.length}`, averageRatingCount : `${aValue / resp.data.length}`})
             });
     }
 
